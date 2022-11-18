@@ -1,0 +1,15 @@
+<form (ngSubmit)="buscar()" autocomplete="off">
+    <!-- 
+        Explicacion del placeholder en a clase: 115 minuto 7:40, 
+        Reutilizar en los otros componentes, por-capital,por-pais....
+        Asi no tener que escribir cada vez que utilize este componente
+        el Buscar por x... si no, que en cada componente esta su placeholder
+        y le llega a aqui y usa el de dicho componente
+    -->
+    <input  type="text" 
+            name="termino" 
+            class="form-control" 
+            [(ngModel)]="termino"
+            (input)="teclaPresionada($event)"
+            [placeholder]="placeholder">
+</form>

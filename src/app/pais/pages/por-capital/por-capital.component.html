@@ -1,0 +1,31 @@
+<div class="animate__animated animate__fadeIn animate__faster">
+    <h2>Por Capital</h2>
+    <hr>
+    <div class="row">
+        <div class="col">
+            <!-- Porque funciona bien, suelto este componente?
+                video 113, minuto 4:00 explicado.
+    
+                Ahora, el DebounceTime (cuando suelto de escribir, muestr sugerencias..):
+                video 114, minuto 1:10 explicado
+            -->
+            <app-pais-input
+            (onEnter)="buscar($event)"
+            placeholder="Buscar Capital..."
+            >
+            </app-pais-input>
+        </div>
+    </div>
+
+    <hr>
+</div>
+
+<div *ngIf="hayError" class="alert alert-danger">
+    No se encontró nada con este término <strong>{{capital}}</strong>
+</div>
+
+<div *ngIf="paises.length > 0 && !hayError" class="row">
+    <div class="col">
+        <app-pais-tabla [paises]="paises"></app-pais-tabla>
+    </div>
+</div>

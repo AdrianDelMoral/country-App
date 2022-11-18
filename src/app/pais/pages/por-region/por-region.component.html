@@ -1,0 +1,45 @@
+<div class="animate__animated animate__fadeIn animate__faster">
+    <h3>Buscar por región: <small>{{ regionActiva | titlecase }}</small></h3>
+    <hr>
+    <h5>Seleccione la región</h5>
+
+    <div class="row">
+        <div class="col d-flex justify-content-evenly">
+            <!-- 
+                // Para algo MUUUY básico y concreto
+                [class.btn-dark]="region === regionActiva" 
+            -->
+
+            <!--
+                // nos lo evalua muy bien, pero no lo evalua en una sola linea...
+                [ngClass]="{
+                    'btn-dark': regionActiva === region,
+                    'btn-outline-dark': regionActiva !== region
+                }" 
+            -->
+            <!-- 
+                // Más eficiente porque lo hacemos en una sola linea
+                [class]="(region===regionActiva) ? 'btn btn-dark': 'btn btn-outline-dark'" 
+            -->
+            <!-- 
+                Envia la region activa, y la cambia de color el boton desde el componente.ts, mejor y más comodo para hacer comparaciones etc
+                [class]="getClaseCSS(region)" 
+            -->
+
+            <button *ngFor="let region of regiones" 
+                    class="animate__animated animate__pulse"
+                    [class]="getClaseCSS(region)" 
+                    (click)="activarRegion(region)">
+                {{ region | titlecase }}
+            </button>
+        </div>
+    </div>
+
+</div>
+<hr>
+
+<div *ngIf="paises.length > 0" class="row">
+    <div class="col">
+        <app-pais-tabla [paises]="paises"></app-pais-tabla>
+    </div>
+</div>
